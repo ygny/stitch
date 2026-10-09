@@ -241,3 +241,19 @@ The design system employs balanced, modern border radii ranging between **10px a
 
 ### 6. Language & Tenant Switcher
 - Subtle pill or ghost trigger positioned at the canvas header. Displays a globe icon, current locale label ("فارسی"), and chevron icon with a Level 2 elevation flyout menu.
+
+## Desktop Preview Scrolling — Required Behavior
+
+The desktop login preview has a fixed viewport width of `920px`. It must never be clipped or shrunk merely because the admin workspace is narrower.
+
+* The preview must live inside a dedicated, width-constrained scroll container.
+* Use `overflow-x: auto` on the actual preview scroll container.
+* Preserve the preview's intended width and allow users to reach both its left and right edges.
+* Do not let parent containers clip the preview or prevent scrolling.
+* Do not introduce page-wide horizontal scrolling as a workaround.
+* Keep the scrollbar usable and visible where practical. If global CSS hides scrollbars, override that rule specifically for the preview scroll container.
+* Preserve this behavior in all future modifications to `admin/code.html`.
+
+The working implementation uses the `preview-scroll-container` class. Keep the `overflow-x-auto` behavior on this container and avoid restoring `overflow-hidden` in a way that clips the preview or disables its scrolling.
+
+Before returning a modified `admin/code.html`, inspect the preview container hierarchy and verify that desktop horizontal scrolling has not regressed.
