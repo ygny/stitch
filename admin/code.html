@@ -16,6 +16,132 @@
     }
     ::-webkit-scrollbar { display: none; }
     .transition-smooth { transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    /* =========================================================================
+       Scoped Preview-Only CSS Theming Engine
+       Only applies strictly to #preview-card without contaminating admin panel
+       ========================================================================= */
+    #preview-card[data-preview-theme="dark"] {
+      background-color: #0f172a !important;
+      border-color: #334155 !important;
+      color: #f8fafc !important;
+    }
+    #preview-card[data-preview-theme="dark"] #preview-form-col {
+      background-color: #0f172a !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-form-heading,
+    #preview-card[data-preview-theme="dark"] #view-brand-name {
+      color: #f8fafc !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-form-desc,
+    #preview-card[data-preview-theme="dark"] #view-brand-slogan,
+    #preview-card[data-preview-theme="dark"] label,
+    #preview-card[data-preview-theme="dark"] .field-subtext,
+    #preview-card[data-preview-theme="dark"] #view-remember-wrapper label {
+      color: #94a3b8 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-lang-badge {
+      background-color: #1e293b !important;
+      color: #94a3b8 !important;
+      border-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-identifier-input,
+    #preview-card[data-preview-theme="dark"] #view-password-input {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+      color: #f1f5f9 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-identifier-input::placeholder,
+    #preview-card[data-preview-theme="dark"] #view-password-input::placeholder {
+      color: #64748b !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-identifier-icon,
+    #preview-card[data-preview-theme="dark"] #view-password-lock-icon,
+    #preview-card[data-preview-theme="dark"] #view-password-toggle-btn {
+      color: #94a3b8 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-password-toggle-btn:hover {
+      color: #cbd5e1 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-remember-chk {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-divider-line-1,
+    #preview-card[data-preview-theme="dark"] #view-divider-line-2 {
+      background-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-divider-text {
+      background-color: #0f172a !important;
+      color: #64748b !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-google-btn,
+    #preview-card[data-preview-theme="dark"] #view-otp-btn {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+      color: #e2e8f0 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-google-btn:hover,
+    #preview-card[data-preview-theme="dark"] #view-otp-btn:hover {
+      background-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-register-wrapper {
+      border-top-color: #334155 !important;
+      color: #94a3b8 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #preview-artwork-col {
+      background: linear-gradient(135deg, #0b1120 0%, #1e293b 100%) !important;
+      border-left-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-trust-badge {
+      background-color: rgba(15, 23, 42, 0.85) !important;
+      border-color: #334155 !important;
+      color: #cbd5e1 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-trust-badge span:last-child {
+      color: #cbd5e1 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #artwork-title {
+      color: #f8fafc !important;
+    }
+    #preview-card[data-preview-theme="dark"] #artwork-subtitle {
+      color: #94a3b8 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-float-card-top,
+    #preview-card[data-preview-theme="dark"] #art-float-card-bottom,
+    #preview-card[data-preview-theme="dark"] #art-center-square {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-bottom-stats {
+      background-color: rgba(15, 23, 42, 0.85) !important;
+      border-color: #334155 !important;
+      color: #cbd5e1 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-bottom-stats .stat-title {
+      color: #e2e8f0 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #art-bottom-stats .stat-subtitle {
+      color: #94a3b8 !important;
+    }
+    #preview-card[data-preview-theme="dark"] #view-otp-notice {
+      background-color: #1e293b !important;
+      border-color: #334155 !important;
+      color: #cbd5e1 !important;
+    }
+
+    /* Light mode baseline */
+    #preview-card[data-preview-theme="light"] {
+      background-color: #ffffff;
+      border-color: rgba(226, 232, 240, 0.8);
+      color: #0f172a;
+    }
+    #preview-card[data-preview-theme="light"] #preview-form-col {
+      background-color: #ffffff;
+    }
+    #preview-card[data-preview-theme="light"] #preview-artwork-col {
+      background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f1f5f9 100%);
+    }
   </style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -252,19 +378,19 @@
 <div class="bg-surface-container-lowest p-5 rounded-2xl border border-surface-container shadow-sm flex flex-col gap-3">
 <div class="flex items-center justify-between">
 <span class="font-bold text-sm text-on-surface">حالت تم (Theme Mode)</span>
-<span class="text-[11px] bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant font-medium">پوسته رنگی</span>
+<span class="text-[11px] bg-surface-container px-2 py-0.5 rounded-full text-on-surface-variant font-medium">پوسته رنگی پیش‌نمایش</span>
 </div>
-<p class="text-xs text-on-surface-variant">انتخاب تم پوسته روشن، تیره یا هماهنگ با سیستم عامل کاربر.</p>
+<p class="text-xs text-on-surface-variant">انتخاب تم پوسته روشن، تیره یا هماهنگ با سیستم عامل کاربر برای فرم احراز هویت.</p>
 <div class="grid grid-cols-3 gap-2.5 pt-1">
-<button class="theme-select-btn p-3 rounded-xl border border-primary bg-primary-container text-on-primary flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="light" type="button">
+<button class="theme-select-btn p-3 rounded-xl border border-primary bg-primary-container text-on-primary flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="light" id="theme-light-btn" type="button">
 <span class="material-symbols-outlined text-[22px]">light_mode</span>
 <span class="text-xs font-semibold">پوسته روشن</span>
 </button>
-<button class="theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="dark" type="button">
+<button class="theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="dark" id="theme-dark-btn" type="button">
 <span class="material-symbols-outlined text-[22px]">dark_mode</span>
 <span class="text-xs font-semibold">پوسته تیره</span>
 </button>
-<button class="theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="system" type="button">
+<button class="theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth" data-theme-val="system" id="theme-system-btn" type="button">
 <span class="material-symbols-outlined text-[22px]">brightness_auto</span>
 <span class="text-xs font-semibold">خودکار سیستمی</span>
 </button>
@@ -596,8 +722,8 @@
 </div>
 <!-- Canvas Stage Wrapper with dynamic width simulator -->
 <div class="w-full bg-surface-container-low p-4 lg:p-8 rounded-3xl border border-surface-container shadow-inner flex items-center justify-center transition-all duration-300 overflow-x-auto min-h-[680px]" id="preview-stage">
-<!-- Live Preview Main Card Container -->
-<div class="w-full rounded-2xl shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/80 bg-white text-slate-900" id="preview-card" style="max-width: 920px;">
+<!-- Live Preview Main Card Container with scoped data-preview-theme -->
+<div class="w-full rounded-2xl shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/80 bg-white text-slate-900" data-preview-theme="light" id="preview-card" style="max-width: 920px;">
 <div class="grid grid-cols-1 md:grid-cols-12 min-h-[620px]" id="preview-grid">
 <!-- Right Form Interactive Column (RTL first or responsive) -->
 <div class="md:col-span-7 p-6 sm:p-10 flex flex-col justify-between transition-all" id="preview-form-col">
@@ -610,30 +736,30 @@
 <img alt="لوگو" class="w-full h-full object-contain hidden p-1" id="view-brand-icon-image" src=""/>
 </div>
 <div class="flex flex-col">
-<span class="font-bold text-base text-slate-900 leading-tight" id="view-brand-name">پلتفرم سازمانی رادین</span>
-<span class="text-xs text-slate-500 font-medium" id="view-brand-slogan">سامانه یکپارچه مدیریت احراز هویت و امنیت ابری</span>
+<span class="font-bold text-base text-slate-900 leading-tight transition-colors" id="view-brand-name">پلتفرم سازمانی رادین</span>
+<span class="text-xs text-slate-500 font-medium transition-colors" id="view-brand-slogan">سامانه یکپارچه مدیریت احراز هویت و امنیت ابری</span>
 </div>
 </div>
-<div class="flex items-center gap-1 text-slate-500 bg-slate-100 px-2.5 py-1 rounded-lg text-xs font-semibold">
+<div class="flex items-center gap-1 text-slate-500 bg-slate-100 border border-transparent px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors" id="view-lang-badge">
 <span class="material-symbols-outlined text-[15px]">language</span>
 <span class="">فارسی</span>
 </div>
 </div>
 <!-- Header & Subtitle -->
 <div class="mb-7">
-<h1 class="font-extrabold text-2xl text-slate-900 mb-1.5 leading-snug" id="view-form-heading">ورود به حساب کاربری</h1>
-<p class="text-xs text-slate-500 leading-relaxed" id="view-form-desc">برای دسترسی به میز کاربری، اطلاعات تایید شده خود را وارد نمایید.</p>
+<h1 class="font-extrabold text-2xl text-slate-900 mb-1.5 leading-snug transition-colors" id="view-form-heading">ورود به حساب کاربری</h1>
+<p class="text-xs text-slate-500 leading-relaxed transition-colors" id="view-form-desc">برای دسترسی به میز کاربری، اطلاعات تایید شده خود را وارد نمایید.</p>
 </div>
 <!-- Interactive Form Simulator -->
 <form class="flex flex-col gap-4" onsubmit="event.preventDefault();">
 <!-- Identifier Field -->
 <div class="flex flex-col gap-1.5">
-<label class="text-xs font-bold text-slate-800 flex items-center justify-between">
+<label class="text-xs font-bold text-slate-800 flex items-center justify-between transition-colors">
 <span class="" id="view-identifier-label">ایمیل سازمانی</span>
-<span class="text-[11px] text-slate-400 font-normal">اجباری</span>
+<span class="text-[11px] text-slate-400 font-normal field-subtext">اجباری</span>
 </label>
 <div class="relative flex items-center">
-<span class="absolute right-3.5 text-slate-400 pointer-events-none">
+<span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors" id="view-identifier-icon-wrapper">
 <span class="material-symbols-outlined text-[20px]" id="view-identifier-icon">mail</span>
 </span>
 <input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-identifier-input" placeholder="name@company.com" style="border-radius: 12px;" type="email" value="user@radin-corp.ir"/>
@@ -642,28 +768,28 @@
 <!-- Password Field (Conditional) -->
 <div class="flex flex-col gap-1.5" id="view-password-wrapper">
 <div class="flex items-center justify-between">
-<label class="text-xs font-bold text-slate-800">کلمه عبور</label>
-<a class="text-xs text-indigo-600 hover:underline font-semibold" href="#" id="view-forgot-link" onclick="alert('امکان بازیابی کلمه عبور در قالب فعال است.'); return false;" style="display: inline;">فراموش کرده‌اید؟</a>
+<label class="text-xs font-bold text-slate-800 transition-colors">کلمه عبور</label>
+<a class="text-xs text-indigo-600 hover:underline font-semibold transition-colors" href="#" id="view-forgot-link" onclick="alert('امکان بازیابی کلمه عبور در قالب فعال است.'); return false;" style="display: inline;">فراموش کرده‌اید؟</a>
 </div>
 <div class="relative flex items-center">
-<span class="absolute right-3.5 text-slate-400 pointer-events-none">
-<span class="material-symbols-outlined text-[20px]">lock</span>
+<span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors">
+<span class="material-symbols-outlined text-[20px]" id="view-password-lock-icon">lock</span>
 </span>
 <input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-password-input" placeholder="رمز عبور خود را وارد کنید" style="border-radius: 12px;" type="password" value="••••••••••••"/>
-<button class="absolute left-3.5 text-slate-400 hover:text-slate-700 transition-colors" id="view-password-toggle-btn" style="border-radius: 12px;" type="button">
+<button class="absolute left-3.5 text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center p-1" id="view-password-toggle-btn" style="border-radius: 12px;" type="button">
 <span class="material-symbols-outlined text-[20px]" id="view-password-toggle-icon">visibility</span>
 </button>
 </div>
 </div>
 <!-- Phone OTP Hint Box (Shown when password disabled in phone mode) -->
-<div class="hidden p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 text-xs flex items-center gap-2" id="view-otp-notice">
+<div class="hidden p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 text-xs flex items-center gap-2 transition-colors" id="view-otp-notice">
 <span class="material-symbols-outlined text-indigo-600 text-[18px]">verified</span>
 <span class="">کد اعتبارسنجی یک‌بار مصرف (OTP) از طریق پیامک ارسال خواهد شد.</span>
 </div>
 <!-- Remember Me Checkbox -->
 <div class="flex items-center gap-2 pt-0.5" id="view-remember-wrapper" style="display: flex;">
 <input checked="" class="w-4 h-4 rounded text-indigo-600 focus:ring-0 cursor-pointer" id="view-remember-chk" style="border-radius: 12px;" type="checkbox"/>
-<label class="text-xs text-slate-600 cursor-pointer select-none" for="view-remember-chk">مرا تا ۳۰ روز آینده در این مرورگر به خاطر بسپار</label>
+<label class="text-xs text-slate-600 cursor-pointer select-none transition-colors" for="view-remember-chk">مرا تا ۳۰ روز آینده در این مرورگر به خاطر بسپار</label>
 </div>
 <!-- Primary CTA Button -->
 <button class="w-full h-11 rounded-xl bg-[#4338ca] text-white text-xs font-bold shadow-md hover:opacity-95 transition-smooth flex items-center justify-center gap-2 mt-1 apply-preview-radius" id="view-submit-btn" style="border-radius: 12px; background-color: rgb(67, 56, 202); border-color: rgb(67, 56, 202);" type="button">
@@ -673,9 +799,9 @@
 <!-- Social & Alternate Logins -->
 <div class="flex flex-col gap-3 mt-1" id="view-social-section" style="display: flex;">
 <div class="flex items-center gap-3" id="view-divider" style="display: flex;">
-<div class="flex-1 h-px bg-slate-200"></div>
-<span class="text-[11px] text-slate-400 font-medium">یا ورود با سایر روش‌ها</span>
-<div class="flex-1 h-px bg-slate-200"></div>
+<div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-1"></div>
+<span class="text-[11px] text-slate-400 font-medium px-2 transition-colors" id="view-divider-text">یا ورود با سایر روش‌ها</span>
+<div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-2"></div>
 </div>
 <div class="grid grid-cols-2 gap-2.5" id="view-social-grid">
 <button class="h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm apply-preview-radius" id="view-google-btn" style="border-radius: 12px; display: flex;" type="button">
@@ -691,9 +817,9 @@
 </form>
 </div>
 <!-- Register Link Footer inside Form -->
-<div class="pt-6 text-center text-xs text-slate-500 border-t border-slate-100 mt-6" id="view-register-wrapper" style="display: block;">
+<div class="pt-6 text-center text-xs text-slate-500 border-t border-slate-100 mt-6 transition-colors" id="view-register-wrapper" style="display: block;">
 <span class="">هنوز حسابی برای شرکت خود ندارید؟</span>
-<a class="text-indigo-600 font-bold hover:underline mr-1" href="#" onclick="alert('پیوند عضویت سازمانی فعال است.'); return false;">درخواست عضویت سازمانی</a>
+<a class="text-indigo-600 font-bold hover:underline mr-1 transition-colors" href="#" id="view-register-link" onclick="alert('پیوند عضویت سازمانی فعال است.'); return false;">درخواست عضویت سازمانی</a>
 </div>
 </div>
 <!-- Left Artwork & Illustration Column -->
@@ -703,9 +829,9 @@
 <div class="absolute -left-16 -bottom-16 w-56 h-56 rounded-full bg-blue-300/20 blur-3xl pointer-events-none"></div>
 <!-- Trust Badge -->
 <div class="relative z-10 flex items-center justify-between">
-<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white">
+<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white transition-colors" id="art-trust-badge">
 <span class="material-symbols-outlined text-indigo-600 text-[16px]">verified_user</span>
-<span class="text-xs font-bold text-slate-800">احراز هویت سازمانی</span>
+<span class="text-xs font-bold text-slate-800 transition-colors">احراز هویت سازمانی</span>
 </div>
 <span class="text-xs text-slate-400 font-mono">v3.5</span>
 </div>
@@ -714,7 +840,7 @@
 <!-- Default Vector Badge Graphic Container -->
 <div class="relative w-48 h-48 flex items-center justify-center" id="artwork-vector-container">
 <div class="absolute inset-0 rounded-full border border-dashed border-indigo-300/60 animate-spin" style="animation-duration: 35s;"></div>
-<div class="absolute w-36 h-36 rounded-3xl bg-white shadow-md rotate-45 flex items-center justify-center"></div>
+<div class="absolute w-36 h-36 rounded-3xl bg-white shadow-md rotate-45 flex items-center justify-center transition-colors" id="art-center-square"></div>
 <!-- Central Diamond -->
 <div class="relative z-10 w-24 h-24 rounded-2xl bg-[#4338ca] shadow-xl rotate-45 flex items-center justify-center transition-smooth" id="view-diamond" style="background-color: rgb(67, 56, 202);">
 <div class="-rotate-45 flex flex-col items-center justify-center text-white">
@@ -722,14 +848,14 @@
 </div>
 </div>
 <!-- Floating Top Card -->
-<div class="absolute -top-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2">
+<div class="absolute -top-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-top">
 <span class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-white">
 <span class="material-symbols-outlined text-[10px]">check</span>
 </span>
 <div class="w-12 h-1.5 rounded-full bg-slate-200"></div>
 </div>
 <!-- Floating Bottom Card -->
-<div class="absolute -bottom-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2">
+<div class="absolute -bottom-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-bottom">
 <span class="material-symbols-outlined text-indigo-600 text-[14px]">lock</span>
 <div class="w-12 h-1.5 rounded-full bg-slate-200"></div>
 </div>
@@ -739,22 +865,22 @@
 <img alt="تصویر اختصاصی" class="w-full h-full object-cover" id="artwork-custom-img" src=""/>
 </div>
 <div class="mt-6 text-center flex flex-col items-center">
-<span class="font-bold text-base text-slate-900">ورود ساده، تجربه‌ای مطمئن</span>
-<p class="text-xs text-slate-500 max-w-[230px] mt-1 leading-relaxed">
+<span class="font-bold text-base text-slate-900 transition-colors" id="artwork-title">ورود ساده، تجربه‌ای مطمئن</span>
+<p class="text-xs text-slate-500 max-w-[230px] mt-1 leading-relaxed transition-colors" id="artwork-subtitle">
                         محافظت از نشست‌های کاربری با پروتکل‌های احراز هویت بدون گذرواژه
                       </p>
 </div>
 </div>
 <!-- Bottom Stats Ribbon -->
-<div class="relative z-10 p-3 rounded-xl bg-white/80 backdrop-blur-md border border-white shadow-sm flex items-center justify-around text-center">
+<div class="relative z-10 p-3 rounded-xl bg-white/80 backdrop-blur-md border border-white shadow-sm flex items-center justify-around text-center transition-colors" id="art-bottom-stats">
 <div class="flex flex-col">
-<span class="text-xs font-extrabold text-slate-800">نمای ماک‌آپ</span>
-<span class="text-[10px] text-slate-500">تست رابط کاربری</span>
+<span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">نمای ماک‌آپ</span>
+<span class="text-[10px] text-slate-500 transition-colors stat-subtitle">تست رابط کاربری</span>
 </div>
 <div class="w-px h-6 bg-slate-200"></div>
 <div class="flex flex-col">
-<span class="text-xs font-extrabold text-slate-800">طراحی استاندارد</span>
-<span class="text-[10px] text-slate-500">سیاست امنیتی RTL</span>
+<span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">طراحی استاندارد</span>
+<span class="text-[10px] text-slate-500 transition-colors stat-subtitle">سیاست امنیتی RTL</span>
 </div>
 </div>
 </div>
@@ -872,6 +998,50 @@
       });
     });
 
+    // Dedicated Theme Controller for Live Preview
+    function applyPreviewTheme() {
+      const previewCard = document.getElementById('preview-card');
+      if (!previewCard) return;
+
+      let effectiveTheme = 'light';
+      if (appState.theme === 'system') {
+        const isSysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        effectiveTheme = isSysDark ? 'dark' : 'light';
+      } else if (appState.theme === 'dark') {
+        effectiveTheme = 'dark';
+      } else {
+        effectiveTheme = 'light';
+      }
+
+      previewCard.setAttribute('data-preview-theme', effectiveTheme);
+
+      // Update the 3 Theme Mode button states in the customizer panel
+      const themeBtns = [
+        { id: 'theme-light-btn', val: 'light' },
+        { id: 'theme-dark-btn', val: 'dark' },
+        { id: 'theme-system-btn', val: 'system' }
+      ];
+
+      themeBtns.forEach(item => {
+        const btn = document.getElementById(item.id);
+        if (btn) {
+          if (appState.theme === item.val) {
+            btn.className = 'theme-select-btn p-3 rounded-xl border border-primary bg-primary-container text-on-primary flex flex-col items-center gap-1.5 transition-smooth ring-2 ring-primary/20 shadow-sm';
+          } else {
+            btn.className = 'theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth';
+          }
+        }
+      });
+    }
+
+    // OS Theme Media Query Listener
+    const sysMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    sysMediaQuery.addEventListener('change', () => {
+      if (appState.theme === 'system') {
+        applyPreviewTheme();
+      }
+    });
+
     // 1. Strict Configuration Validation & Sanitization
     function validateAndSanitizeConfig(raw) {
       if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
@@ -950,9 +1120,7 @@
       const rawHexNorm = normalized.primaryColorHex.toLowerCase();
       if (pKey !== 'custom' && PRESET_HEX_MAP[pKey]) {
         const canonicalPresetHex = PRESET_HEX_MAP[pKey].toLowerCase();
-        // If provided, verify it strictly matches the preset or canonicalize
         if (rawHexNorm !== canonicalPresetHex) {
-          // Check 3-char expansion if matched
           const isThreeMatch = (rawHexNorm.length === 4 && ('#' + rawHexNorm[1] + rawHexNorm[1] + rawHexNorm[2] + rawHexNorm[2] + rawHexNorm[3] + rawHexNorm[3]) === canonicalPresetHex);
           if (!isThreeMatch) {
             throw new Error(`کد رنگ Hex (${normalized.primaryColorHex}) با پالت انتخابی (${pKey}) همخوانی ندارد. کد مورد انتظار: ${PRESET_HEX_MAP[pKey]}`);
@@ -960,7 +1128,6 @@
         }
         sanitized.primaryColorHex = PRESET_HEX_MAP[pKey];
       } else {
-        // Custom key: must be valid hex, normalized
         sanitized.primaryColorHex = normalized.primaryColorHex;
       }
 
@@ -982,7 +1149,7 @@
       }
       sanitized.viewport = normalized.viewport;
 
-      // Text strings: brandName, brandSlogan, formHeading, formDesc
+      // Text strings
       ['brandName', 'brandSlogan', 'formHeading', 'formDesc'].forEach(k => {
         if (typeof normalized[k] !== 'string') {
           throw new Error(`مقدار فیلد متنی "${k}" باید یک رشته معتبر باشد.`);
@@ -990,7 +1157,7 @@
         sanitized[k] = normalized[k].trim();
       });
 
-      // Booleans: showLogo, showIllustration, showPassword, showRemember, showForgot, showRegister, showGoogle, showOtp
+      // Booleans
       const boolKeys = ['showLogo', 'showIllustration', 'showPassword', 'showRemember', 'showForgot', 'showRegister', 'showGoogle', 'showOtp'];
       for (const bk of boolKeys) {
         if (typeof normalized[bk] !== 'boolean') {
@@ -1043,17 +1210,6 @@
       if (appState.primaryColorKey !== 'custom' && COLOR_PRESETS[appState.primaryColorKey]) {
         currentHex = COLOR_PRESETS[appState.primaryColorKey].primary;
       }
-
-      // Sync Controls UI
-      // Theme Buttons
-      document.querySelectorAll('.theme-select-btn').forEach(btn => {
-        const val = btn.getAttribute('data-theme-val');
-        if (val === appState.theme) {
-          btn.className = 'theme-select-btn p-3 rounded-xl border border-primary bg-primary-container text-on-primary flex flex-col items-center gap-1.5 transition-smooth';
-        } else {
-          btn.className = 'theme-select-btn p-3 rounded-xl border border-surface-container bg-surface-container-low text-on-surface hover:bg-surface-container-high flex flex-col items-center gap-1.5 transition-smooth';
-        }
-      });
 
       // Color Preset Cards
       document.querySelectorAll('.color-preset-card').forEach(card => {
@@ -1165,66 +1321,8 @@
         previewCard.style.maxWidth = '920px';
       }
 
-      // Theme Mode on Preview Card
-      const isDarkMode = appState.theme === 'dark' || (appState.theme === 'system' && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      
-      if (isDarkMode) {
-        previewCard.className = 'w-full rounded-2xl shadow-2xl transition-all duration-300 overflow-hidden border border-slate-700 bg-slate-900 text-slate-100';
-        document.getElementById('view-brand-name').className = 'font-bold text-base text-slate-100 leading-tight';
-        document.getElementById('view-brand-slogan').className = 'text-xs text-slate-400 font-medium';
-        document.getElementById('view-form-heading').className = 'font-extrabold text-2xl text-slate-100 mb-1.5 leading-snug';
-        document.getElementById('view-form-desc').className = 'text-xs text-slate-400 leading-relaxed';
-        document.getElementById('view-identifier-label').parentElement.className = 'text-xs font-bold text-slate-200 flex items-center justify-between';
-        
-        const pwdLabel = document.querySelector('#view-password-wrapper label');
-        if (pwdLabel) pwdLabel.className = 'text-xs font-bold text-slate-200';
-        
-        const inputs = previewCard.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="tel"]');
-        inputs.forEach(inp => {
-          inp.className = `w-full h-11 pr-11 pl-4 border border-slate-700 bg-slate-800 text-slate-100 text-xs focus:outline-none transition-smooth shadow-sm`;
-        });
-        
-        const regWrapper = document.getElementById('view-register-wrapper');
-        if (regWrapper) regWrapper.className = 'pt-6 text-center text-xs text-slate-400 border-t border-slate-800 mt-6';
-
-        const socialBtns = document.querySelectorAll('#view-google-btn, #view-otp-btn');
-        socialBtns.forEach(sb => {
-          sb.className = 'h-10 px-3 border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm';
-        });
-
-        const artCol = document.getElementById('preview-artwork-col');
-        if (artCol) {
-          artCol.className = 'md:col-span-5 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950 p-8 flex flex-col justify-between relative overflow-hidden transition-all';
-        }
-      } else {
-        previewCard.className = 'w-full rounded-2xl shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/80 bg-white text-slate-900';
-        document.getElementById('view-brand-name').className = 'font-bold text-base text-slate-900 leading-tight';
-        document.getElementById('view-brand-slogan').className = 'text-xs text-slate-500 font-medium';
-        document.getElementById('view-form-heading').className = 'font-extrabold text-2xl text-slate-900 mb-1.5 leading-snug';
-        document.getElementById('view-form-desc').className = 'text-xs text-slate-500 leading-relaxed';
-        document.getElementById('view-identifier-label').parentElement.className = 'text-xs font-bold text-slate-800 flex items-center justify-between';
-
-        const pwdLabel = document.querySelector('#view-password-wrapper label');
-        if (pwdLabel) pwdLabel.className = 'text-xs font-bold text-slate-800';
-
-        const inputs = previewCard.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], input[type="tel"]');
-        inputs.forEach(inp => {
-          inp.className = `w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm`;
-        });
-
-        const regWrapper = document.getElementById('view-register-wrapper');
-        if (regWrapper) regWrapper.className = 'pt-6 text-center text-xs text-slate-500 border-t border-slate-100 mt-6';
-
-        const socialBtns = document.querySelectorAll('#view-google-btn, #view-otp-btn');
-        socialBtns.forEach(sb => {
-          sb.className = 'h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm';
-        });
-
-        const artCol = document.getElementById('preview-artwork-col');
-        if (artCol) {
-          artCol.className = 'md:col-span-5 bg-gradient-to-br from-slate-100 via-indigo-50/50 to-slate-200 p-8 flex flex-col justify-between relative overflow-hidden transition-all';
-        }
-      }
+      // Apply Scoped Theme Engine
+      applyPreviewTheme();
 
       // Radius Injection into Preview Elements
       const radiusPx = appState.borderRadius;
@@ -1244,6 +1342,16 @@
 
       const diamond = document.getElementById('view-diamond');
       if (diamond) diamond.style.backgroundColor = currentHex;
+
+      // Accent color on links
+      const forgotLink = document.getElementById('view-forgot-link');
+      if (forgotLink) {
+        forgotLink.style.color = currentHex;
+      }
+      const registerLink = document.getElementById('view-register-link');
+      if (registerLink) {
+        registerLink.style.color = currentHex;
+      }
 
       // Brand Content
       document.getElementById('view-brand-name').textContent = appState.brandName || 'نام سامانه شما';
@@ -1365,7 +1473,6 @@
         rememberWrapper.style.display = appState.showRemember ? 'flex' : 'none';
       }
 
-      const forgotLink = document.getElementById('view-forgot-link');
       if (forgotLink) {
         forgotLink.style.display = appState.showForgot ? 'inline' : 'none';
       }
@@ -1417,6 +1524,7 @@
     document.querySelectorAll('.theme-select-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         appState.theme = btn.getAttribute('data-theme-val');
+        applyPreviewTheme();
         renderPreview();
       });
     });
@@ -1705,10 +1813,10 @@
         console.warn('Config in localStorage is corrupted or invalid. Falling back safely to DEFAULT_CONFIG.', err);
         appState = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
       }
+      applyPreviewTheme();
     }
 
     function triggerJsonDownload() {
-      // Export sanitized and consistent state
       const exportData = {
         theme: appState.theme,
         primaryColorKey: appState.primaryColorKey,
@@ -1747,10 +1855,8 @@
     // Complete Reset to Defaults
     function resetToDefaults() {
       if (confirm('آیا مایل به بازنشانی کلیه تنظیمات به حالت پیش‌فرض اولیه هستید؟')) {
-        // Deep clone DEFAULT_CONFIG into active state
         appState = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
 
-        // Clear all file inputs
         if (fileLogoInput) fileLogoInput.value = '';
         if (fileArtworkInput) fileArtworkInput.value = '';
         const importInput = document.getElementById('file-import-json');
@@ -1764,7 +1870,7 @@
           storageCleared = false;
         }
 
-        // Re-render UI and live preview completely
+        applyPreviewTheme();
         renderPreview();
 
         if (storageCleared) {
@@ -1799,16 +1905,12 @@
               throw new Error('ساختار فایل JSON معتبر نیست و قابل تحلیل نمی‌باشد.');
             }
 
-            // Strictly validate and sanitize without touching appState beforehand
             const sanitized = validateAndSanitizeConfig(parsed);
-
-            // Apply to active state ONLY if completely valid
             appState = sanitized;
 
-            // Re-render immediately
+            applyPreviewTheme();
             renderPreview();
 
-            // Attempt to save to localStorage
             const saved = saveStateToStorage(false);
             if (saved) {
               showToast('پیکربندی JSON با موفقیت اعتبارسنجی، اعمال و ذخیره گردید.');
@@ -1816,10 +1918,8 @@
               showToast('پیکربندی با موفقیت در نشست جاری اعمال گردید، اما ذخیره در حافظه محلی مرورگر ناموفق بود.');
             }
           } catch (err) {
-            // Keep appState completely unchanged and show error
             showToast(err.message || 'خطا در اعتبارسنجی فایل پیکربندی.', 'error');
           } finally {
-            // Always reset file input so the user can re-import the same file if needed
             e.target.value = '';
           }
         };
@@ -1830,15 +1930,6 @@
         };
 
         reader.readAsText(file);
-      });
-    }
-
-    // System Dark Mode Watcher
-    if (window.matchMedia) {
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
-        if (appState.theme === 'system') {
-          renderPreview();
-        }
       });
     }
 
