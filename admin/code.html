@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-
-<html dir="rtl" lang="fa"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="web_dashboard" name="shell-type"/>
+<!DOCTYPE html><html dir="rtl" lang="fa" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="web_dashboard" name="shell-type">
 <title>پنل مدیریت و شخصی‌سازی قالب‌های احراز هویت</title>
-<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
 <style>
     @layer base {
       html, body { margin: 0; padding: 0; }
@@ -142,6 +140,17 @@
     #preview-card[data-preview-theme="light"] #preview-artwork-col {
       background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f1f5f9 100%);
     }
+
+    /* Strict LTR styling for JSON display */
+    .json-code-box {
+      direction: ltr !important;
+      text-align: left !important;
+      unicode-bidi: isolate !important;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+      white-space: pre !important;
+      word-break: normal !important;
+      tab-size: 2;
+    }
   </style>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
@@ -223,7 +232,7 @@
 <div class="h-16 w-full px-6 flex items-center justify-between gap-4">
 <div class="flex items-center gap-4">
 <div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm shadow-primary/20">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-on-primary shadow-sm shadow-primary/20 shrink-0">
 <span class="material-symbols-outlined text-[22px]">shield_person</span>
 </div>
 <div class="flex flex-col">
@@ -268,62 +277,66 @@
 </div>
 </div>
 </header>
-<!-- Sidebar Navigation -->
-<aside class="fixed right-0 top-0 h-full w-64 bg-surface-container-low z-40 flex flex-col pt-20 pb-6 border-l border-surface-container">
-<div class="px-6 mb-4">
-<span class="text-xs font-bold text-on-surface-variant block uppercase tracking-wider">ماژول‌های احراز هویت</span>
+<!-- Collapsible Right Sidebar Navigation -->
+<aside class="fixed right-0 top-0 h-full w-64 bg-surface-container-low z-40 flex flex-col pt-20 pb-6 border-l border-surface-container transition-all duration-300 ease-in-out shadow-sm" id="admin-sidebar">
+<!-- Sidebar Header & Toggle Button -->
+<div class="px-4 mb-3 flex items-center justify-between" id="sidebar-header-area">
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-wider sidebar-text-item" id="sidebar-section-title">ماژول‌های احراز هویت</span>
+<button class="w-8 h-8 rounded-lg bg-surface-container-lowest hover:bg-surface-container border border-surface-container flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-smooth shrink-0" id="btn-toggle-sidebar" title="جمع‌کردن / بازکردن نوار کناری" type="button">
+<span class="material-symbols-outlined text-[18px] transition-transform duration-300" id="sidebar-toggle-chevron">chevron_right</span>
+</button>
 </div>
-<nav class="flex-1 px-3 flex flex-col gap-1 overflow-y-auto">
-<a aria-current="page" class="flex items-center justify-between px-3.5 py-2.5 bg-primary-container text-on-primary font-bold rounded-xl shadow-sm transition-smooth" href="#">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px]">palette</span>
-<span class="text-sm">شخصی‌سازی زنده</span>
+<nav class="flex-1 px-2.5 flex flex-col gap-1 overflow-y-auto">
+<a aria-current="page" class="flex items-center justify-between px-3 py-2.5 bg-primary-container text-on-primary font-bold rounded-xl shadow-sm transition-smooth sidebar-nav-link" href="#" title="شخصی‌سازی زنده">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] shrink-0">palette</span>
+<span class="text-sm truncate sidebar-text-item">شخصی‌سازی زنده</span>
 </div>
-<span class="text-[11px] px-2 py-0.5 rounded-full bg-white/20 text-white font-medium">فعال</span>
+<span class="text-[11px] px-2 py-0.5 rounded-full bg-white/20 text-white font-medium sidebar-text-item shrink-0">فعال</span>
 </a>
-<a class="flex items-center px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group" href="#" onclick="alert('شما در محیط ویرایشگر زنده قرار دارید.'); return false;">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] group-hover:text-primary">dashboard_customize</span>
-<span class="text-sm">کتابخانه قالب‌ها</span>
-</div>
-</a>
-<a class="flex items-center px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group" href="#" onclick="switchTab('tab-appearance'); return false;">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] group-hover:text-primary">format_paint</span>
-<span class="text-sm">رنگ و تایپوگرافی</span>
+<a class="flex items-center px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group sidebar-nav-link" href="#" onclick="alert('شما در محیط ویرایشگر زنده قرار دارید.'); return false;" title="کتابخانه قالب‌ها">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary shrink-0">dashboard_customize</span>
+<span class="text-sm truncate sidebar-text-item">کتابخانه قالب‌ها</span>
 </div>
 </a>
-<a class="flex items-center px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group" href="#" onclick="switchTab('tab-auth'); return false;">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] group-hover:text-primary">sms</span>
-<span class="text-sm">تنظیمات ورود پیامکی</span>
+<a class="flex items-center px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group sidebar-nav-link" href="#" onclick="switchTab('tab-appearance'); return false;" title="رنگ و تایپوگرافی">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary shrink-0">format_paint</span>
+<span class="text-sm truncate sidebar-text-item">رنگ و تایپوگرافی</span>
 </div>
 </a>
-<a class="flex items-center px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group" href="#" onclick="switchTab('tab-auth'); return false;">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] group-hover:text-primary">key</span>
-<span class="text-sm">ورود یکپارچه SSO</span>
+<a class="flex items-center px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group sidebar-nav-link" href="#" onclick="switchTab('tab-auth'); return false;" title="تنظیمات ورود پیامکی">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary shrink-0">sms</span>
+<span class="text-sm truncate sidebar-text-item">تنظیمات ورود پیامکی</span>
 </div>
 </a>
-<a class="flex items-center px-3.5 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group" href="#" onclick="switchTab('tab-fields'); return false;">
-<div class="flex items-center gap-2.5">
-<span class="material-symbols-outlined text-[20px] group-hover:text-primary">security</span>
-<span class="text-sm">فیلدها و سیاست‌ها</span>
+<a class="flex items-center px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group sidebar-nav-link" href="#" onclick="switchTab('tab-auth'); return false;" title="ورود یکپارچه SSO">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary shrink-0">key</span>
+<span class="text-sm truncate sidebar-text-item">ورود یکپارچه SSO</span>
+</div>
+</a>
+<a class="flex items-center px-3 py-2.5 rounded-xl text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-smooth group sidebar-nav-link" href="#" onclick="switchTab('tab-fields'); return false;" title="فیلدها و سیاست‌ها">
+<div class="flex items-center gap-2.5 min-w-0">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary shrink-0">security</span>
+<span class="text-sm truncate sidebar-text-item">فیلدها و سیاست‌ها</span>
 </div>
 </a>
 </nav>
-<div class="px-4 pt-2">
-<div class="p-4 rounded-xl bg-surface-container border border-surface-container-highest flex flex-col gap-1.5">
+<div class="px-3 pt-2" id="sidebar-footer-card">
+<div class="p-3.5 rounded-xl bg-surface-container border border-surface-container-highest flex flex-col gap-1.5 overflow-hidden">
 <div class="flex items-center justify-between">
-<span class="text-xs text-on-surface font-bold">بسته احراز هویت RTL</span>
-<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold">نسخه ۳.۵</span>
+<span class="text-xs text-on-surface font-bold truncate">بسته احراز هویت RTL</span>
+<span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold shrink-0">نسخه ۳.۵</span>
 </div>
 <p class="text-xs text-on-surface-variant leading-relaxed">تنظیمات در فضای محلی مرورگر و فرمت JSON هماهنگ ذخیره می‌شوند.</p>
 </div>
 </div>
 </aside>
-<!-- Main Content Layout -->
-<div class="pr-64">
+<!-- Main Content Layout with dynamic margin -->
+<div class="pr-64 transition-all duration-300 ease-in-out" id="main-workspace-wrapper">
 <main class="relative pt-20 bg-background min-h-screen w-full px-4 lg:px-8 pb-12">
 <!-- Sync Status & Fast Actions Banner -->
 <div class="mb-5 flex flex-wrap items-center justify-between gap-3 bg-surface-container-lowest p-4 rounded-2xl border border-surface-container shadow-sm">
@@ -403,7 +416,7 @@
 <div class="flex items-center gap-1.5">
 <label class="text-xs text-on-surface-variant cursor-pointer hover:text-primary flex items-center gap-1" for="custom-color-picker">
 <span class="">رنگ دلخواه:</span>
-<input class="w-6 h-6 rounded-md cursor-pointer border-0 bg-transparent p-0" id="custom-color-picker" type="color" value="#4338ca"/>
+<input class="w-6 h-6 rounded-md cursor-pointer border-0 bg-transparent p-0" id="custom-color-picker" type="color" value="#4338ca">
 </label>
 </div>
 </div>
@@ -476,11 +489,11 @@
 <span class="font-bold text-sm text-on-surface">اطلاعات و شناسه برند شما</span>
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-semibold text-on-surface" for="ctrl-brand-name">نام تجاری / سامانه:</label>
-<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-brand-name" type="text" value="پلتفرم سازمانی رادین"/>
+<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-brand-name" type="text" value="پلتفرم سازمانی رادین">
 </div>
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-semibold text-on-surface" for="ctrl-brand-slogan">زیرعنوان برند (Slogan):</label>
-<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-brand-slogan" type="text" value="سامانه یکپارچه مدیریت احراز هویت و امنیت ابری"/>
+<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-brand-slogan" type="text" value="سامانه یکپارچه مدیریت احراز هویت و امنیت ابری">
 </div>
 <!-- Logo Upload with Real FileReader -->
 <div class="flex flex-col gap-2 pt-1 border-t border-surface-container">
@@ -489,7 +502,7 @@
 <div class="flex items-center gap-3">
 <div class="w-11 h-11 rounded-xl bg-primary-container text-on-primary flex items-center justify-center overflow-hidden shadow-sm" id="logo-preview-box">
 <span class="material-symbols-outlined text-[24px]" id="logo-preview-icon">fingerprint</span>
-<img alt="لوگو" class="w-full h-full object-contain hidden p-1" id="logo-preview-img" src=""/>
+<img alt="لوگو" class="w-full h-full object-contain hidden p-1" id="logo-preview-img" src="">
 </div>
 <div class="flex flex-col">
 <span class="text-xs font-bold text-on-surface" id="logo-filename-text">لوگوی پیش‌فرض وکتور</span>
@@ -497,7 +510,7 @@
 </div>
 </div>
 <div class="flex items-center gap-1.5">
-<input accept="image/*" class="hidden" id="file-logo-input" type="file"/>
+<input accept="image/*" class="hidden" id="file-logo-input" type="file">
 <button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface border border-surface-container hover:bg-surface-container text-xs font-semibold transition-smooth shadow-sm" id="btn-upload-logo" type="button">
                       انتخاب فایل
                     </button>
@@ -511,7 +524,7 @@
 <div class="flex flex-col gap-3 pt-2 border-t border-surface-container">
 <div class="flex items-center justify-between">
 <div class="flex items-center gap-2">
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-illustration" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-illustration" type="checkbox">
 <div class="flex flex-col cursor-pointer">
 <label class="text-xs font-bold text-on-surface cursor-pointer" for="ctrl-show-illustration">نمایش ستون گرافیکی / تصویر برند</label>
 <span class="text-[11px] text-on-surface-variant">نمایش آرت‌ورک هندسی در سمت راست فرم ورود</span>
@@ -523,7 +536,7 @@
 <div class="flex items-center gap-3">
 <div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-secondary overflow-hidden">
 <span class="material-symbols-outlined text-[22px]" id="artwork-preview-icon">auto_awesome</span>
-<img alt="آرت‌ورک" class="w-full h-full object-cover hidden" id="artwork-preview-img" src=""/>
+<img alt="آرت‌ورک" class="w-full h-full object-cover hidden" id="artwork-preview-img" src="">
 </div>
 <div class="flex flex-col">
 <span class="text-xs font-bold text-on-surface" id="artwork-filename-text">آرت‌ورک هندسی پیش‌فرض</span>
@@ -531,7 +544,7 @@
 </div>
 </div>
 <div class="flex items-center gap-1.5">
-<input accept="image/*" class="hidden" id="file-artwork-input" type="file"/>
+<input accept="image/*" class="hidden" id="file-artwork-input" type="file">
 <button class="px-3 py-1.5 rounded-lg bg-surface-container-lowest text-on-surface border border-surface-container hover:bg-surface-container text-xs font-semibold transition-smooth shadow-sm" id="btn-upload-artwork" type="button">
                       تغییر تصویر
                     </button>
@@ -563,7 +576,7 @@
 </div>
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-semibold text-on-surface" for="ctrl-heading">عنوان اصلی فرم:</label>
-<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-heading" type="text" value="ورود به حساب کاربری"/>
+<input class="h-11 px-3.5 rounded-xl bg-surface-container-low border border-surface-container focus:border-primary focus:bg-surface-container-lowest text-xs text-on-surface transition-smooth outline-none" id="ctrl-heading" type="text" value="ورود به حساب کاربری">
 </div>
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-semibold text-on-surface" for="ctrl-desc">توضیحات و راهنمای فرم:</label>
@@ -573,19 +586,19 @@
 <div class="flex flex-col gap-2 pt-2 border-t border-surface-container">
 <label class="p-3 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between cursor-pointer">
 <span class="text-xs font-semibold text-on-surface">فیلد کلمه عبور (Password)</span>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-password" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-password" type="checkbox">
 </label>
 <label class="p-3 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between cursor-pointer">
 <span class="text-xs font-semibold text-on-surface">گزینه «مرا به خاطر بسپار»</span>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-remember" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-remember" type="checkbox">
 </label>
 <label class="p-3 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between cursor-pointer">
 <span class="text-xs font-semibold text-on-surface">پیوند «رمز عبور را فراموش کرده‌اید؟»</span>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-forgot" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-forgot" type="checkbox">
 </label>
 <label class="p-3 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between cursor-pointer">
 <span class="text-xs font-semibold text-on-surface">فوتر «درخواست عضویت سازمانی / ثبت‌نام»</span>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-register" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-register" type="checkbox">
 </label>
 </div>
 </div>
@@ -620,7 +633,7 @@
 <span class="text-[10px] text-on-surface-variant">پروتکل امن OAuth2 و یکپارچگی سریع</span>
 </div>
 </div>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-google" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-google" type="checkbox">
 </label>
 <!-- OTP SMS Switch -->
 <label class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container flex items-center justify-between cursor-pointer">
@@ -633,7 +646,7 @@
 <span class="text-[10px] text-on-surface-variant">ارسال کد تایید پیامکی ۵ رقمی</span>
 </div>
 </div>
-<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-otp" type="checkbox"/>
+<input checked="" class="w-4 h-4 rounded text-primary focus:ring-0 cursor-pointer" id="ctrl-show-otp" type="checkbox">
 </label>
 </div>
 <div class="p-3 rounded-xl bg-surface-container-high/60 border border-surface-container flex items-start gap-2">
@@ -653,10 +666,18 @@
               </p>
 <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container flex flex-col gap-2">
 <div class="flex items-center justify-between">
-<span class="text-xs font-bold text-on-surface">کد زنده JSON:</span>
+<span class="text-xs font-bold text-on-surface">کد زنده JSON (نسخه ۱):</span>
+<div class="flex items-center gap-2">
 <span class="text-[10px] font-mono text-secondary" id="export-json-size">auth-studio-config.json</span>
+<button class="px-2 py-0.5 rounded-md bg-surface-container-lowest hover:bg-surface-container text-on-surface text-[11px] font-medium border border-surface-container flex items-center gap-1 transition-smooth" id="btn-copy-json" title="کپی کردن کد JSON" type="button">
+<span class="material-symbols-outlined text-[14px]">content_copy</span>
+<span class="">کپی</span>
+</button>
 </div>
-<pre class="dir-ltr text-left p-3 bg-surface-container-lowest border border-surface-container rounded-xl font-mono text-[11px] text-on-surface-variant overflow-x-auto max-h-48" id="json-code-preview">{
+</div>
+<!-- Strict LTR pre container preventing RTL punctuation reverse -->
+<pre class="json-code-box p-3 bg-surface-container-lowest border border-surface-container rounded-xl text-[11px] text-on-surface-variant overflow-x-auto max-h-56 select-text" dir="ltr" id="json-code-preview">{
+  "schemaVersion": 1,
   "theme": "light",
   "primaryColorKey": "indigo",
   "primaryColorHex": "#4338ca",
@@ -675,8 +696,7 @@
   "showForgot": true,
   "showRegister": true,
   "showGoogle": true,
-  "showOtp": true,
-  "viewport": "desktop"
+  "showOtp": true
 }</pre>
 </div>
 <div class="grid grid-cols-2 gap-2.5">
@@ -687,14 +707,14 @@
 <label class="h-11 px-4 rounded-xl bg-surface-container-low text-on-surface hover:bg-surface-container border border-surface-container transition-smooth flex items-center justify-center gap-2 text-xs font-bold cursor-pointer">
 <span class="material-symbols-outlined text-[18px]">upload</span>
 <span class="">درون‌ریزی فایل JSON</span>
-<input accept=".json" class="hidden" id="file-import-json" type="file"/>
+<input accept=".json" class="hidden" id="file-import-json" type="file">
 </label>
 </div>
 </div>
 </div>
 </div>
 <!-- Live Preview Canvas Column (7 Columns) -->
-<div class="xl:col-span-7 flex flex-col gap-3">
+<div class="xl:col-span-7 flex flex-col gap-3 min-w-0 overflow-hidden">
 <!-- Live Preview Control Ribbon -->
 <div class="bg-surface-container-lowest p-3 rounded-2xl border border-surface-container shadow-sm flex flex-wrap items-center justify-between gap-3">
 <div class="flex items-center gap-2.5">
@@ -702,7 +722,7 @@
 <span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
 <span class="text-xs font-bold">پیش‌نمایش زنده راست‌چین</span>
 </div>
-<span class="text-xs text-on-surface-variant font-medium hidden sm:inline" id="viewport-label-tag">رایانه (1440px)</span>
+<span class="text-xs text-on-surface-variant font-medium hidden sm:inline" id="viewport-label-tag">رایانه (920px)</span>
 </div>
 <!-- Preview Viewport Switcher -->
 <div class="flex items-center gap-1 bg-surface-container p-1 rounded-xl">
@@ -720,179 +740,41 @@
 </button>
 </div>
 </div>
-<!-- Canvas Stage Wrapper with dynamic width simulator -->
-<div class="w-full bg-surface-container-low p-4 lg:p-8 rounded-3xl border border-surface-container shadow-inner flex items-center justify-center transition-all duration-300 overflow-x-auto min-h-[680px]" id="preview-stage">
-<!-- Live Preview Main Card Container with scoped data-preview-theme -->
-<div class="w-full rounded-2xl shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/80 bg-white text-slate-900" data-preview-theme="light" id="preview-card" style="max-width: 920px;">
-<div class="grid grid-cols-1 md:grid-cols-12 min-h-[620px]" id="preview-grid">
-<!-- Right Form Interactive Column (RTL first or responsive) -->
-<div class="md:col-span-7 p-6 sm:p-10 flex flex-col justify-between transition-all" id="preview-form-col">
-<!-- Brand Identity inside preview -->
-<div>
-<div class="flex items-center justify-between mb-7">
-<div class="flex items-center gap-3">
-<div class="w-10 h-10 rounded-xl bg-[#4338ca] text-white flex items-center justify-center shadow-md transition-smooth overflow-hidden" id="view-brand-icon-box" style="border-radius: 12px; background-color: rgb(67, 56, 202);">
-<span class="material-symbols-outlined text-[22px]" id="view-brand-icon-glyph">fingerprint</span>
-<img alt="لوگو" class="w-full h-full object-contain hidden p-1" id="view-brand-icon-image" src=""/>
-</div>
-<div class="flex flex-col">
-<span class="font-bold text-base text-slate-900 leading-tight transition-colors" id="view-brand-name">پلتفرم سازمانی رادین</span>
-<span class="text-xs text-slate-500 font-medium transition-colors" id="view-brand-slogan">سامانه یکپارچه مدیریت احراز هویت و امنیت ابری</span>
-</div>
-</div>
-<div class="flex items-center gap-1 text-slate-500 bg-slate-100 border border-transparent px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors" id="view-lang-badge">
-<span class="material-symbols-outlined text-[15px]">language</span>
-<span class="">فارسی</span>
-</div>
-</div>
-<!-- Header & Subtitle -->
-<div class="mb-7">
-<h1 class="font-extrabold text-2xl text-slate-900 mb-1.5 leading-snug transition-colors" id="view-form-heading">ورود به حساب کاربری</h1>
-<p class="text-xs text-slate-500 leading-relaxed transition-colors" id="view-form-desc">برای دسترسی به میز کاربری، اطلاعات تایید شده خود را وارد نمایید.</p>
-</div>
-<!-- Interactive Form Simulator -->
-<form class="flex flex-col gap-4" onsubmit="event.preventDefault();">
-<!-- Identifier Field -->
-<div class="flex flex-col gap-1.5">
-<label class="text-xs font-bold text-slate-800 flex items-center justify-between transition-colors">
-<span class="" id="view-identifier-label">ایمیل سازمانی</span>
-<span class="text-[11px] text-slate-400 font-normal field-subtext">اجباری</span>
-</label>
-<div class="relative flex items-center">
-<span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors" id="view-identifier-icon-wrapper">
-<span class="material-symbols-outlined text-[20px]" id="view-identifier-icon">mail</span>
-</span>
-<input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-identifier-input" placeholder="name@company.com" style="border-radius: 12px;" type="email" value="user@radin-corp.ir"/>
-</div>
-</div>
-<!-- Password Field (Conditional) -->
-<div class="flex flex-col gap-1.5" id="view-password-wrapper">
-<div class="flex items-center justify-between">
-<label class="text-xs font-bold text-slate-800 transition-colors">کلمه عبور</label>
-<a class="text-xs text-indigo-600 hover:underline font-semibold transition-colors" href="#" id="view-forgot-link" onclick="alert('امکان بازیابی کلمه عبور در قالب فعال است.'); return false;" style="display: inline;">فراموش کرده‌اید؟</a>
-</div>
-<div class="relative flex items-center">
-<span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors">
-<span class="material-symbols-outlined text-[20px]" id="view-password-lock-icon">lock</span>
-</span>
-<input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-password-input" placeholder="رمز عبور خود را وارد کنید" style="border-radius: 12px;" type="password" value="••••••••••••"/>
-<button class="absolute left-3.5 text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center p-1" id="view-password-toggle-btn" style="border-radius: 12px;" type="button">
-<span class="material-symbols-outlined text-[20px]" id="view-password-toggle-icon">visibility</span>
-</button>
-</div>
-</div>
-<!-- Phone OTP Hint Box (Shown when password disabled in phone mode) -->
-<div class="hidden p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 text-xs flex items-center gap-2 transition-colors" id="view-otp-notice">
-<span class="material-symbols-outlined text-indigo-600 text-[18px]">verified</span>
-<span class="">کد اعتبارسنجی یک‌بار مصرف (OTP) از طریق پیامک ارسال خواهد شد.</span>
-</div>
-<!-- Remember Me Checkbox -->
-<div class="flex items-center gap-2 pt-0.5" id="view-remember-wrapper" style="display: flex;">
-<input checked="" class="w-4 h-4 rounded text-indigo-600 focus:ring-0 cursor-pointer" id="view-remember-chk" style="border-radius: 12px;" type="checkbox"/>
-<label class="text-xs text-slate-600 cursor-pointer select-none transition-colors" for="view-remember-chk">مرا تا ۳۰ روز آینده در این مرورگر به خاطر بسپار</label>
-</div>
-<!-- Primary CTA Button -->
-<button class="w-full h-11 rounded-xl bg-[#4338ca] text-white text-xs font-bold shadow-md hover:opacity-95 transition-smooth flex items-center justify-center gap-2 mt-1 apply-preview-radius" id="view-submit-btn" style="border-radius: 12px; background-color: rgb(67, 56, 202); border-color: rgb(67, 56, 202);" type="button">
-<span class="">ورود امن به سامانه</span>
-<span class="material-symbols-outlined text-[17px]">arrow_back</span>
-</button>
-<!-- Social & Alternate Logins -->
-<div class="flex flex-col gap-3 mt-1" id="view-social-section" style="display: flex;">
-<div class="flex items-center gap-3" id="view-divider" style="display: flex;">
-<div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-1"></div>
-<span class="text-[11px] text-slate-400 font-medium px-2 transition-colors" id="view-divider-text">یا ورود با سایر روش‌ها</span>
-<div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-2"></div>
-</div>
-<div class="grid grid-cols-2 gap-2.5" id="view-social-grid">
-<button class="h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm apply-preview-radius" id="view-google-btn" style="border-radius: 12px; display: flex;" type="button">
-<span class="material-symbols-outlined text-blue-600 text-[18px]">account_circle</span>
-<span class="">ورود با گوگل</span>
-</button>
-<button class="h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm apply-preview-radius" id="view-otp-btn" style="border-radius: 12px; display: flex;" type="button">
-<span class="material-symbols-outlined text-emerald-600 text-[18px]">sms</span>
-<span class="">رمز پیامکی</span>
-</button>
-</div>
-</div>
-</form>
-</div>
-<!-- Register Link Footer inside Form -->
-<div class="pt-6 text-center text-xs text-slate-500 border-t border-slate-100 mt-6 transition-colors" id="view-register-wrapper" style="display: block;">
-<span class="">هنوز حسابی برای شرکت خود ندارید؟</span>
-<a class="text-indigo-600 font-bold hover:underline mr-1 transition-colors" href="#" id="view-register-link" onclick="alert('پیوند عضویت سازمانی فعال است.'); return false;">درخواست عضویت سازمانی</a>
-</div>
-</div>
-<!-- Left Artwork & Illustration Column -->
-<div class="md:col-span-5 bg-gradient-to-br from-slate-100 via-indigo-50/50 to-slate-200 p-8 flex flex-col justify-between relative overflow-hidden transition-all" id="preview-artwork-col">
-<!-- Ambient Graphic Elements -->
-<div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-indigo-300/20 blur-3xl pointer-events-none"></div>
-<div class="absolute -left-16 -bottom-16 w-56 h-56 rounded-full bg-blue-300/20 blur-3xl pointer-events-none"></div>
-<!-- Trust Badge -->
-<div class="relative z-10 flex items-center justify-between">
-<div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white transition-colors" id="art-trust-badge">
-<span class="material-symbols-outlined text-indigo-600 text-[16px]">verified_user</span>
-<span class="text-xs font-bold text-slate-800 transition-colors">احراز هویت سازمانی</span>
-</div>
-<span class="text-xs text-slate-400 font-mono">v3.5</span>
-</div>
-<!-- Center Geometric Graphic Motif or Custom Image -->
-<div class="relative z-10 my-auto py-8 flex flex-col items-center justify-center">
-<!-- Default Vector Badge Graphic Container -->
-<div class="relative w-48 h-48 flex items-center justify-center" id="artwork-vector-container">
-<div class="absolute inset-0 rounded-full border border-dashed border-indigo-300/60 animate-spin" style="animation-duration: 35s;"></div>
-<div class="absolute w-36 h-36 rounded-3xl bg-white shadow-md rotate-45 flex items-center justify-center transition-colors" id="art-center-square"></div>
-<!-- Central Diamond -->
-<div class="relative z-10 w-24 h-24 rounded-2xl bg-[#4338ca] shadow-xl rotate-45 flex items-center justify-center transition-smooth" id="view-diamond" style="background-color: rgb(67, 56, 202);">
-<div class="-rotate-45 flex flex-col items-center justify-center text-white">
-<span class="material-symbols-outlined text-[36px]">shield</span>
-</div>
-</div>
-<!-- Floating Top Card -->
-<div class="absolute -top-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-top">
-<span class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[10px]">check</span>
-</span>
-<div class="w-12 h-1.5 rounded-full bg-slate-200"></div>
-</div>
-<!-- Floating Bottom Card -->
-<div class="absolute -bottom-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-bottom">
-<span class="material-symbols-outlined text-indigo-600 text-[14px]">lock</span>
-<div class="w-12 h-1.5 rounded-full bg-slate-200"></div>
-</div>
-</div>
-<!-- Custom Uploaded Artwork (Image) -->
-<div class="relative z-10 w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-white hidden" id="artwork-custom-image-box">
-<img alt="تصویر اختصاصی" class="w-full h-full object-cover" id="artwork-custom-img" src=""/>
-</div>
-<div class="mt-6 text-center flex flex-col items-center">
-<span class="font-bold text-base text-slate-900 transition-colors" id="artwork-title">ورود ساده، تجربه‌ای مطمئن</span>
-<p class="text-xs text-slate-500 max-w-[230px] mt-1 leading-relaxed transition-colors" id="artwork-subtitle">
-                        محافظت از نشست‌های کاربری با پروتکل‌های احراز هویت بدون گذرواژه
-                      </p>
-</div>
-</div>
-<!-- Bottom Stats Ribbon -->
-<div class="relative z-10 p-3 rounded-xl bg-white/80 backdrop-blur-md border border-white shadow-sm flex items-center justify-around text-center transition-colors" id="art-bottom-stats">
-<div class="flex flex-col">
-<span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">نمای ماک‌آپ</span>
-<span class="text-[10px] text-slate-500 transition-colors stat-subtitle">تست رابط کاربری</span>
-</div>
-<div class="w-px h-6 bg-slate-200"></div>
-<div class="flex flex-col">
-<span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">طراحی استاندارد</span>
-<span class="text-[10px] text-slate-500 transition-colors stat-subtitle">سیاست امنیتی RTL</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-</div>
+<!-- Canvas Stage Wrapper with dynamic width simulator & horizontal scroll -->
+<div class="w-full max-w-full bg-surface-container-low p-4 lg:p-8 rounded-3xl border border-surface-container shadow-inner flex flex-col items-center justify-center transition-all duration-300 overflow-hidden min-h-[680px] min-w-0" id="preview-stage"><div class="preview-scroll-container w-full max-w-full block pb-3 outline-none focus:ring-1 focus:ring-primary/30 rounded-2xl" id="preview-scroll-wrapper" tabindex="0" aria-label="بوم پیش‌نمایش قابل پیمایش افقی"><div class="w-max min-w-full flex items-center justify-center mx-auto shrink-0 py-2" id="preview-wrapper"><div class="shrink-0 mx-auto rounded-2xl shadow-xl transition-all duration-300 overflow-hidden border border-slate-200/80 bg-white text-slate-900" data-preview-theme="light" id="preview-card" style="width: 920px; max-width: 920px;"><div class="grid grid-cols-1 md:grid-cols-12 min-h-[620px]" id="preview-grid"><div class="md:col-span-7 p-6 sm:p-10 flex flex-col justify-between transition-all" id="preview-form-col"><div><div class="flex items-center justify-between mb-7"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-xl bg-[#4338ca] text-white flex items-center justify-center shadow-md transition-smooth overflow-hidden shrink-0" id="view-brand-icon-box" style="border-radius: 12px; background-color: rgb(67, 56, 202);"><span class="material-symbols-outlined text-[22px]" id="view-brand-icon-glyph">fingerprint</span><img alt="لوگو" class="w-full h-full object-contain hidden p-1" id="view-brand-icon-image" src=""></div><div class="flex flex-col"><span class="font-bold text-base text-slate-900 leading-tight transition-colors" id="view-brand-name">پلتفرم سازمانی رادین</span><span class="text-xs text-slate-500 font-medium transition-colors" id="view-brand-slogan">سامانه یکپارچه مدیریت احراز هویت و امنیت ابری</span></div></div><div class="flex items-center gap-1 text-slate-500 bg-slate-100 border border-transparent px-2.5 py-1 rounded-lg text-xs font-semibold transition-colors shrink-0" id="view-lang-badge"><span class="material-symbols-outlined text-[15px]">language</span><span class="">English</span></div></div><div class="mb-7"><h1 class="font-extrabold text-2xl text-slate-900 mb-1.5 leading-snug transition-colors" id="view-form-heading">ورود به حساب کاربری</h1><p class="text-xs text-slate-500 leading-relaxed transition-colors" id="view-form-desc">برای دسترسی به میز کاربری، اطلاعات تایید شده خود را وارد نمایید.</p></div><form class="flex flex-col gap-4" onsubmit="event.preventDefault();"><div class="flex flex-col gap-1.5"><label class="text-xs font-bold text-slate-800 flex items-center justify-between transition-colors"><span class="" id="view-identifier-label">ایمیل سازمانی</span><span class="text-[11px] text-slate-400 font-normal field-subtext">اجباری</span></label><div class="relative flex items-center"><span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors" id="view-identifier-icon-wrapper"><span class="material-symbols-outlined text-[20px]" id="view-identifier-icon">mail</span></span><input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-identifier-input" placeholder="name@company.com" style="border-radius: 12px;" type="email" value="user@radin-corp.ir"></div></div><div class="flex flex-col gap-1.5" id="view-password-wrapper"><div class="flex items-center justify-between"><label class="text-xs font-bold text-slate-800 transition-colors">کلمه عبور</label><a class="text-xs text-indigo-600 hover:underline font-semibold transition-colors" href="#" id="view-forgot-link" onclick="alert('امکان بازیابی کلمه عبور در قالب فعال است.'); return false;" style="display: inline;">فراموش کرده‌اید؟</a></div><div class="relative flex items-center"><span class="absolute right-3.5 text-slate-400 pointer-events-none transition-colors"><span class="material-symbols-outlined text-[20px]" id="view-password-lock-icon">lock</span></span><input class="w-full h-11 pr-11 pl-4 border border-slate-200 bg-slate-50/70 text-slate-800 text-xs focus:outline-none focus:bg-white transition-smooth shadow-sm" id="view-password-input" placeholder="رمز عبور خود را وارد کنید" style="border-radius: 12px;" type="password" value="••••••••••••"><button class="absolute left-3.5 text-slate-400 hover:text-slate-700 transition-colors flex items-center justify-center p-1" id="view-password-toggle-btn" style="border-radius: 12px;" type="button"><span class="material-symbols-outlined text-[20px]" id="view-password-toggle-icon">visibility</span></button></div></div><div class="hidden p-3 rounded-xl bg-slate-100 border border-slate-200 text-slate-600 text-xs flex items-center gap-2 transition-colors" id="view-otp-notice"><span class="material-symbols-outlined text-indigo-600 text-[18px]">verified</span><span class="">کد اعتبارسنجی یک‌بار مصرف (OTP) از طریق پیامک ارسال خواهد شد.</span></div><div class="flex items-center gap-2 pt-0.5" id="view-remember-wrapper" style="display: flex;"><input checked="" class="w-4 h-4 rounded text-indigo-600 focus:ring-0 cursor-pointer" id="view-remember-chk" style="border-radius: 12px;" type="checkbox"><label class="text-xs text-slate-600 cursor-pointer select-none transition-colors" for="view-remember-chk">مرا تا ۳۰ روز آینده در این مرورگر به خاطر بسپار</label></div><button class="w-full h-11 rounded-xl bg-[#4338ca] text-white text-xs font-bold shadow-md hover:opacity-95 transition-smooth flex items-center justify-center gap-2 mt-1 apply-preview-radius" id="view-submit-btn" style="border-radius: 12px; background-color: rgb(67, 56, 202); border-color: rgb(67, 56, 202);" type="button"><span class="">ورود امن به سامانه</span><span class="material-symbols-outlined text-[17px]">arrow_back</span></button><div class="flex flex-col gap-3 mt-1" id="view-social-section" style="display: flex;"><div class="flex items-center gap-3" id="view-divider" style="display: flex;"><div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-1"></div><span class="text-[11px] text-slate-400 font-medium px-2 transition-colors" id="view-divider-text">یا ورود با سایر روش‌ها</span><div class="flex-1 h-px bg-slate-200 transition-colors" id="view-divider-line-2"></div></div><div class="grid grid-cols-2 gap-2.5" id="view-social-grid"><button class="h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm apply-preview-radius" id="view-google-btn" style="border-radius: 12px; display: flex;" type="button"><span class="material-symbols-outlined text-blue-600 text-[18px]">account_circle</span><span class="">ورود با گوگل</span></button><button class="h-10 px-3 border border-slate-200 bg-slate-50 hover:bg-slate-100 text-slate-700 text-xs font-semibold transition-smooth flex items-center justify-center gap-2 shadow-sm apply-preview-radius" id="view-otp-btn" style="border-radius: 12px; display: flex;" type="button"><span class="material-symbols-outlined text-emerald-600 text-[18px]">sms</span><span class="">رمز پیامکی</span></button></div></div></form></div><div class="pt-6 text-center text-xs text-slate-500 border-t border-slate-100 mt-6 transition-colors" id="view-register-wrapper" style="display: block;"><span class="">هنوز حسابی برای شرکت خود ندارید؟</span><a class="text-indigo-600 font-bold hover:underline mr-1 transition-colors" href="#" id="view-register-link" onclick="alert('پیوند عضویت سازمانی فعال است.'); return false;">درخواست عضویت سازمانی</a></div></div><div class="md:col-span-5 bg-gradient-to-br from-slate-100 via-indigo-50/50 to-slate-200 p-8 flex flex-col justify-between relative overflow-hidden transition-all" id="preview-artwork-col"><div class="absolute -right-16 -top-16 w-56 h-56 rounded-full bg-indigo-300/20 blur-3xl pointer-events-none"></div><div class="absolute -left-16 -bottom-16 w-56 h-56 rounded-full bg-blue-300/20 blur-3xl pointer-events-none"></div><div class="relative z-10 flex items-center justify-between gap-4 flex-wrap"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/80 backdrop-blur-md shadow-sm border border-white transition-colors shrink-0" id="art-trust-badge"><span class="material-symbols-outlined text-indigo-600 text-[16px]">verified_user</span><span class="text-xs font-bold text-slate-800 transition-colors">احراز هویت سازمانی</span></div><span class="text-xs text-slate-400 font-mono px-2 py-0.5 rounded-md bg-white/40 shrink-0" id="art-version-tag">v3.5</span></div><div class="relative z-10 my-auto py-8 flex flex-col items-center justify-center"><div class="relative w-48 h-48 flex items-center justify-center" id="artwork-vector-container"><div class="absolute inset-0 rounded-full border border-dashed border-indigo-300/60 animate-spin" style="animation-duration: 35s;"></div><div class="absolute w-36 h-36 rounded-3xl bg-white shadow-md rotate-45 flex items-center justify-center transition-colors" id="art-center-square"></div><div class="relative z-10 w-24 h-24 rounded-2xl bg-[#4338ca] shadow-xl rotate-45 flex items-center justify-center transition-smooth" id="view-diamond" style="background-color: rgb(67, 56, 202);"><div class="-rotate-45 flex flex-col items-center justify-center text-white"><span class="material-symbols-outlined text-[36px]">shield</span></div></div><div class="absolute -top-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-top"><span class="w-4 h-4 rounded-full bg-emerald-500 flex items-center justify-center text-white"><span class="material-symbols-outlined text-[10px]">check</span></span><div class="w-12 h-1.5 rounded-full bg-slate-200"></div></div><div class="absolute -bottom-2 z-20 bg-white px-3 py-1.5 rounded-xl shadow-md border border-slate-100 flex items-center gap-2 transition-colors" id="art-float-card-bottom"><span class="material-symbols-outlined text-indigo-600 text-[14px]">lock</span><div class="w-12 h-1.5 rounded-full bg-slate-200"></div></div></div><div class="relative z-10 w-full max-w-[260px] aspect-square rounded-2xl overflow-hidden shadow-lg border-2 border-white hidden" id="artwork-custom-image-box"><img alt="تصویر اختصاصی" class="w-full h-full object-cover" id="artwork-custom-img" src=""></div><div class="mt-6 text-center flex flex-col items-center"><span class="font-bold text-base text-slate-900 transition-colors" id="artwork-title">ورود ساده، تجربه‌ای مطمئن</span><p class="text-xs text-slate-500 max-w-[230px] mt-1 leading-relaxed transition-colors" id="artwork-subtitle">محافظت از نشست‌های کاربری با پروتکل‌های احراز هویت بدون گذرواژه</p></div></div><div class="relative z-10 p-3 rounded-xl bg-white/80 backdrop-blur-md border border-white shadow-sm flex items-center justify-around text-center transition-colors" id="art-bottom-stats"><div class="flex flex-col"><span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">نمای ماک‌آپ</span><span class="text-[10px] text-slate-500 transition-colors stat-subtitle">تست رابط کاربری</span></div><div class="w-px h-6 bg-slate-200"></div><div class="flex flex-col"><span class="text-xs font-extrabold text-slate-800 transition-colors stat-title">طراحی استاندارد</span><span class="text-[10px] text-slate-500 transition-colors stat-subtitle">سیاست امنیتی RTL</span></div></div></div></div></div></div></div></div>
 </div>
 </div>
 </main>
 </div>
 <!-- JAVASCRIPT STATE ENGINE -->
 <script>
+    // 0. Versioned Configuration Contract
+    const CURRENT_SCHEMA_VERSION = 1;
+
+    // Supported Template Configuration Keys (public contract, excludes viewport and editor state)
+    const TEMPLATE_CONFIG_KEYS = [
+      'schemaVersion',
+      'theme',
+      'primaryColorKey',
+      'primaryColorHex',
+      'borderRadius',
+      'brandName',
+      'brandSlogan',
+      'showLogo',
+      'logoDataUrl',
+      'showIllustration',
+      'illustrationDataUrl',
+      'identifierType',
+      'formHeading',
+      'formDesc',
+      'showPassword',
+      'showRemember',
+      'showForgot',
+      'showRegister',
+      'showGoogle',
+      'showOtp'
+    ];
+
     // 1. Color Palette Presets
     const COLOR_PRESETS = {
       indigo: { name: 'نیلی سازمانی', primary: '#4338ca', hover: '#3730a3', light: '#eef2ff' },
@@ -910,7 +792,7 @@
       slate: '#1e293b'
     };
 
-    // 2. Default Configuration Object
+    // 2. Default Configuration Object (Editor State includes editor-only viewport)
     const DEFAULT_CONFIG = {
       theme: 'light', // 'light' | 'dark' | 'system'
       primaryColorKey: 'indigo', // 'indigo' | 'emerald' | 'slate' | 'royal' | 'custom'
@@ -931,14 +813,108 @@
       showRegister: true,
       showGoogle: true,
       showOtp: true,
-      viewport: 'desktop' // 'desktop' | 'tablet' | 'mobile'
+      viewport: 'desktop' // Editor-only responsive state: 'desktop' | 'tablet' | 'mobile'
     };
 
-    // Storage Key
+    // Storage Keys
     const STORAGE_KEY = 'auth_studio_config';
+    const SIDEBAR_STORAGE_KEY = 'admin_sidebar_collapsed';
 
-    // Current Reactive State
+    // Current Reactive State (holds template config + editor viewport)
     let appState = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+
+    // Sidebar Collapsible Engine
+    let isSidebarCollapsed = false;
+
+    function applySidebarState(collapsed) {
+      isSidebarCollapsed = collapsed;
+      const sidebar = document.getElementById('admin-sidebar');
+      const workspace = document.getElementById('main-workspace-wrapper');
+      const chevron = document.getElementById('sidebar-toggle-chevron');
+      const title = document.getElementById('sidebar-section-title');
+      const footerCard = document.getElementById('sidebar-footer-card');
+      const textItems = sidebar ? sidebar.querySelectorAll('.sidebar-text-item') : [];
+      const links = sidebar ? sidebar.querySelectorAll('.sidebar-nav-link') : [];
+
+      if (!sidebar || !workspace) return;
+
+      if (collapsed) {
+        sidebar.classList.remove('w-64');
+        sidebar.classList.add('w-[72px]');
+        workspace.classList.remove('pr-64');
+        workspace.classList.add('pr-[72px]');
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+        if (title) title.classList.add('hidden');
+        if (footerCard) footerCard.classList.add('hidden');
+        textItems.forEach(el => el.classList.add('hidden'));
+        links.forEach(l => {
+          l.classList.add('justify-center', 'px-2');
+          l.classList.remove('justify-between', 'px-3');
+        });
+      } else {
+        sidebar.classList.remove('w-[72px]');
+        sidebar.classList.add('w-64');
+        workspace.classList.remove('pr-[72px]');
+        workspace.classList.add('pr-64');
+        if (chevron) chevron.style.transform = 'rotate(0deg)';
+        if (title) title.classList.remove('hidden');
+        if (footerCard) footerCard.classList.remove('hidden');
+        textItems.forEach(el => el.classList.remove('hidden'));
+        links.forEach(l => {
+          l.classList.remove('justify-center', 'px-2');
+          if (l.getAttribute('aria-current') === 'page') {
+            l.classList.add('justify-between', 'px-3');
+          } else {
+            l.classList.add('px-3');
+          }
+        });
+      }
+
+      try {
+        localStorage.setItem(SIDEBAR_STORAGE_KEY, collapsed ? 'true' : 'false');
+      } catch (e) {}
+    }
+
+    function initSidebar() {
+      const saved = localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      applySidebarState(saved === 'true');
+
+      const toggleBtn = document.getElementById('btn-toggle-sidebar');
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', () => {
+          applySidebarState(!isSidebarCollapsed);
+        });
+      }
+    }
+
+    // Central Canonical Template Export Serialization Function
+    function getExportableConfig() {
+      const canonical = {
+        schemaVersion: CURRENT_SCHEMA_VERSION,
+        theme: appState.theme,
+        primaryColorKey: appState.primaryColorKey,
+        primaryColorHex: appState.primaryColorKey !== 'custom' && PRESET_HEX_MAP[appState.primaryColorKey]
+          ? PRESET_HEX_MAP[appState.primaryColorKey]
+          : appState.primaryColorHex,
+        borderRadius: appState.borderRadius,
+        brandName: appState.brandName,
+        brandSlogan: appState.brandSlogan,
+        showLogo: appState.showLogo,
+        logoDataUrl: appState.logoDataUrl || '',
+        showIllustration: appState.showIllustration,
+        illustrationDataUrl: appState.illustrationDataUrl || '',
+        identifierType: appState.identifierType,
+        formHeading: appState.formHeading,
+        formDesc: appState.formDesc,
+        showPassword: appState.showPassword,
+        showRemember: appState.showRemember,
+        showForgot: appState.showForgot,
+        showRegister: appState.showRegister,
+        showGoogle: appState.showGoogle,
+        showOtp: appState.showOtp
+      };
+      return canonical;
+    }
 
     // Toast Notification System
     function showToast(message, type = 'success') {
@@ -1042,10 +1018,17 @@
       }
     });
 
-    // 1. Strict Configuration Validation & Sanitization
+    // 1. Strict Configuration Validation & Sanitization with Schema Versioning
     function validateAndSanitizeConfig(raw) {
       if (!raw || typeof raw !== 'object' || Array.isArray(raw)) {
         throw new Error('ساختار داده نامعتبر است. فایل باید یک آبجکت استاندارد پیکربندی باشد.');
+      }
+
+      // Schema Version Check
+      if ('schemaVersion' in raw) {
+        if (typeof raw.schemaVersion !== 'number' || raw.schemaVersion !== CURRENT_SCHEMA_VERSION) {
+          throw new Error('نسخه ساختار پیکربندی (schemaVersion: ' + raw.schemaVersion + ') پشتیبانی نمی‌شود. تنها نسخه ۱ مجاز است.');
+        }
       }
 
       // Explicit legacy aliases map
@@ -1078,17 +1061,17 @@
         }
       }
 
-      // Check for unknown or unsupported keys
-      const allowedStandardKeys = new Set(Object.keys(DEFAULT_CONFIG));
+      // Allowed keys check: allow canonical keys + schemaVersion + optional legacy viewport for editor
+      const allowedKeys = new Set([...TEMPLATE_CONFIG_KEYS, 'viewport']);
       for (const key of Object.keys(normalized)) {
-        if (!allowedStandardKeys.has(key)) {
+        if (!allowedKeys.has(key)) {
           throw new Error(`کلید تنظیمات ناشناخته و غیرمجاز شناسایی شد: "${key}"`);
         }
       }
 
       const sanitized = {};
 
-      // Fill missing optional properties from defaults
+      // Fill missing optional template properties from defaults
       for (const k of Object.keys(DEFAULT_CONFIG)) {
         if (!(k in normalized)) {
           normalized[k] = DEFAULT_CONFIG[k];
@@ -1143,11 +1126,15 @@
       }
       sanitized.identifierType = normalized.identifierType;
 
-      // viewport
-      if (!['desktop', 'tablet', 'mobile'].includes(normalized.viewport)) {
-        throw new Error('نمای نمایش نامعتبر است. فقط desktop، tablet یا mobile مجاز است.');
+      // viewport (Editor-only state: safely extracted for interactive session if present)
+      if (normalized.viewport !== undefined) {
+        if (!['desktop', 'tablet', 'mobile'].includes(normalized.viewport)) {
+          throw new Error('نمای نمایش نامعتبر است. فقط desktop، tablet یا mobile مجاز است.');
+        }
+        sanitized.viewport = normalized.viewport;
+      } else {
+        sanitized.viewport = appState.viewport || 'desktop';
       }
-      sanitized.viewport = normalized.viewport;
 
       // Text strings
       ['brandName', 'brandSlogan', 'formHeading', 'formDesc'].forEach(k => {
@@ -1291,7 +1278,7 @@
         }
       });
 
-      // Viewport buttons
+      // Viewport buttons (both header and preview toolbar)
       document.querySelectorAll('.viewport-toggle-btn').forEach(btn => {
         const vp = btn.getAttribute('data-viewport-btn');
         if (vp === appState.viewport) {
@@ -1306,25 +1293,28 @@
       // Update Viewport Label
       const vpTag = document.getElementById('viewport-label-tag');
       if (vpTag) {
-        vpTag.textContent = appState.viewport === 'desktop' ? 'رایانه (1440px)' : appState.viewport === 'tablet' ? 'تبلت (768px)' : 'موبایل (390px)';
+        vpTag.textContent = appState.viewport === 'desktop' ? 'رایانه (920px)' : appState.viewport === 'tablet' ? 'تبلت (720px)' : 'موبایل (390px)';
       }
 
       // --- LIVE PREVIEW CONTAINER UPDATES ---
       const previewCard = document.getElementById('preview-card');
       
-      // Viewport width
+      // Strict exact viewport sizing
       if (appState.viewport === 'mobile') {
+        previewCard.style.width = '390px';
         previewCard.style.maxWidth = '390px';
       } else if (appState.viewport === 'tablet') {
+        previewCard.style.width = '720px';
         previewCard.style.maxWidth = '720px';
       } else {
+        previewCard.style.width = '920px';
         previewCard.style.maxWidth = '920px';
       }
 
       // Apply Scoped Theme Engine
       applyPreviewTheme();
 
-      // Radius Injection into Preview Elements
+      // Radius Injection into Preview Form Elements (NOT to the outer stage frame)
       const radiusPx = appState.borderRadius;
       const elementsToRound = previewCard.querySelectorAll('input, button, #view-brand-icon-box');
       elementsToRound.forEach(el => {
@@ -1386,7 +1376,7 @@
         logoFileName.textContent = 'لوگوی پیش‌فرض وکتور';
       }
 
-      // Artwork column handling
+      // Artwork column handling: hide on mobile viewport or when toggled off
       const artworkCol = document.getElementById('preview-artwork-col');
       const formCol = document.getElementById('preview-form-col');
       const artworkUploadContainer = document.getElementById('artwork-upload-container');
@@ -1505,17 +1495,17 @@
         }
       }
 
-      // Sync JSON preview in export tab
+      // Canonical JSON preview in export tab (rendered via getExportableConfig)
       const jsonPre = document.getElementById('json-code-preview');
       if (jsonPre) {
-        const exportableState = { ...appState };
-        if (exportableState.logoDataUrl && exportableState.logoDataUrl.startsWith('data:')) {
-          exportableState.logoDataUrl = '[Data URL Logo: ' + exportableState.logoDataUrl.substring(0, 32) + '...]';
+        const previewExportState = getExportableConfig();
+        if (previewExportState.logoDataUrl && previewExportState.logoDataUrl.startsWith('data:')) {
+          previewExportState.logoDataUrl = '[Data URL Logo: ' + previewExportState.logoDataUrl.substring(0, 32) + '...]';
         }
-        if (exportableState.illustrationDataUrl && exportableState.illustrationDataUrl.startsWith('data:')) {
-          exportableState.illustrationDataUrl = '[Data URL Artwork: ' + exportableState.illustrationDataUrl.substring(0, 32) + '...]';
+        if (previewExportState.illustrationDataUrl && previewExportState.illustrationDataUrl.startsWith('data:')) {
+          previewExportState.illustrationDataUrl = '[Data URL Artwork: ' + previewExportState.illustrationDataUrl.substring(0, 32) + '...]';
         }
-        jsonPre.textContent = JSON.stringify(exportableState, null, 2);
+        jsonPre.textContent = JSON.stringify(previewExportState, null, 2);
       }
     }
 
@@ -1655,7 +1645,7 @@
       });
     });
 
-    // Viewport switches
+    // Viewport switches (Desktop, Tablet, Mobile) - synced across both header and stage toolbars
     document.querySelectorAll('.viewport-toggle-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         appState.viewport = btn.getAttribute('data-viewport-btn');
@@ -1676,6 +1666,20 @@
           pwdInput.type = 'password';
           pwdToggleIcon.textContent = 'visibility';
         }
+      });
+    }
+
+    // Copy JSON to clipboard
+    const btnCopyJson = document.getElementById('btn-copy-json');
+    if (btnCopyJson) {
+      btnCopyJson.addEventListener('click', () => {
+        const fullExport = getExportableConfig();
+        const jsonText = JSON.stringify(fullExport, null, 2);
+        navigator.clipboard.writeText(jsonText).then(() => {
+          showToast('کد پیکربندی JSON با موفقیت در کلیپ‌بورد کپی شد.');
+        }).catch(() => {
+          showToast('امکان دسترسی به کلیپ‌بورد میسر نشد.', 'error');
+        });
       });
     }
 
@@ -1817,31 +1821,7 @@
     }
 
     function triggerJsonDownload() {
-      const exportData = {
-        theme: appState.theme,
-        primaryColorKey: appState.primaryColorKey,
-        primaryColorHex: appState.primaryColorKey !== 'custom' && PRESET_HEX_MAP[appState.primaryColorKey]
-          ? PRESET_HEX_MAP[appState.primaryColorKey]
-          : appState.primaryColorHex,
-        borderRadius: appState.borderRadius,
-        brandName: appState.brandName,
-        brandSlogan: appState.brandSlogan,
-        showLogo: appState.showLogo,
-        logoDataUrl: appState.logoDataUrl,
-        showIllustration: appState.showIllustration,
-        illustrationDataUrl: appState.illustrationDataUrl,
-        identifierType: appState.identifierType,
-        formHeading: appState.formHeading,
-        formDesc: appState.formDesc,
-        showPassword: appState.showPassword,
-        showRemember: appState.showRemember,
-        showForgot: appState.showForgot,
-        showRegister: appState.showRegister,
-        showGoogle: appState.showGoogle,
-        showOtp: appState.showOtp,
-        viewport: appState.viewport
-      };
-
+      const exportData = getExportableConfig();
       const dataStr = 'data:text/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(exportData, null, 2));
       const downloadAnchor = document.createElement('a');
       downloadAnchor.setAttribute('href', dataStr);
@@ -1934,7 +1914,10 @@
     }
 
     // Initialization
+    initSidebar();
     loadStateFromStorage();
     renderPreview();
   </script>
+
+
 </body></html>
